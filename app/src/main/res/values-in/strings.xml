@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Status Saver</string>
+    
+    <!-- Main Screen -->
+    <string name="title_status_saver">Status Saver</string>
+    <string name="tab_all">Semua</string>
+    <string name="tab_images">Gambar</string>
+    <string name="tab_videos">Video</string>
+    <string name="tab_recent">Terbaru</string>
+    <string name="tab_older">Lama</string>
+    
+    <!-- Empty States -->
+    <string name="no_updates_found">Tidak ada pembaruan ditemukan</string>
+    <string name="no_images_found">Tidak ada gambar ditemukan</string>
+    <string name="no_videos_found">Tidak ada video ditemukan</string>
+    <string name="no_recent_updates">Tidak ada pembaruan terbaru</string>
+    <string name="no_older_updates">Tidak ada pembaruan lama</string>
+    
+    <!-- Instructions -->
+    <string name="empty_state_instructions">Pastikan:\n1. Aplikasi pesan terinstal\n2. Anda telah melihat status baru-baru ini\n3. Telah memberikan semua izin</string>
+    
+    <!-- Actions -->
+    <string name="action_refresh">Segarkan</string>
+    <string name="action_grid_size">Ukuran Grid</string>
+    <string name="action_share">Bagikan</string>
+    <string name="action_save">Simpan</string>
+    <string name="action_back">Kembali</string>
+    <string name="action_select_all">Pilih Semua</string>
+    <string name="action_clear_selection">Hapus Pilihan</string>
+    <string name="action_download_selected">Unduh Terpilih</string>
+    <string name="items_selected">%d dipilih</string>
+    
+    <!-- Grid Sizes -->
+    <string name="grid_small">Kecil</string>
+    <string name="grid_medium">Sedang</string>
+    <string name="grid_large">Besar</string>
+    
+    <!-- Permissions -->
+    <string name="permission_required">Izin Diperlukan</string>
+    <string name="permission_storage_access">Izin Tambahan Diperlukan</string>
+    <string name="permission_storage_message">Aplikasi ini memerlukan akses untuk mengelola penyimpanan eksternal untuk membaca file media.</string>
+    <string name="permission_storage_instruction">Mohon berikan izin \'Akses semua file\' di Pengaturan.</string>
+    <string name="permission_photos_title">Akses Foto</string>
+    <string name="permission_photos_desc">Untuk menyimpan status gambar dari WhatsApp</string>
+    <string name="permission_videos_title">Akses Video</string>
+    <string name="permission_videos_desc">Untuk menyimpan status video dari WhatsApp</string>
+    <string name="permission_intro">Untuk menyimpan status WhatsApp, kami memerlukan akses ke:</string>
+    <string name="permission_privacy_note">Kami menghargai privasi Anda. Izin ini hanya digunakan untuk mengakses dan menyimpan status WhatsApp.</string>
+    
+    <!-- Buttons -->
+    <string name="button_open_settings">Buka Pengaturan</string>
+    <string name="button_cancel">Batal</string>
+    <string name="button_continue">Lanjutkan</string>
+    <string name="button_ok">OK</string>
+    <string name="button_open">Buka</string>
+    
+    <!-- Status Messages -->
+    <string name="status_saving">Menyimpan status…</string>
+    <string name="status_saved">Status berhasil disimpan!</string>
+    <string name="status_save_failed">Gagal menyimpan status: %1$s</string>
+    <string name="status_permission_required">Izin penyimpanan diperlukan untuk mengakses file media</string>
+    <string name="status_saved_multiple">%d item disimpan</string>
+    <string name="status_save_failed_multiple">Gagal menyimpan %s: %s</string>
+    
+    <!-- Preview Screen -->
+    <string name="title_preview">Pratinjau</string>
+    <string name="preview_open_saved">Ingin membuka %s yang disimpan?</string>
+    <string name="preview_type_video">video</string>
+    <string name="preview_type_image">gambar</string>
+</resources> 

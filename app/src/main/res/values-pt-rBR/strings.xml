@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Status Saver</string>
+    
+    <!-- Main Screen -->
+    <string name="title_status_saver">Status Saver</string>
+    <string name="tab_all">Todos</string>
+    <string name="tab_images">Imagens</string>
+    <string name="tab_videos">Vídeos</string>
+    <string name="tab_recent">Recentes</string>
+    <string name="tab_older">Antigos</string>
+    
+    <!-- Empty States -->
+    <string name="no_updates_found">Nenhuma atualização encontrada</string>
+    <string name="no_images_found">Nenhuma imagem encontrada</string>
+    <string name="no_videos_found">Nenhum vídeo encontrado</string>
+    <string name="no_recent_updates">Nenhuma atualização recente</string>
+    <string name="no_older_updates">Nenhuma atualização antiga</string>
+    
+    <!-- Instructions -->
+    <string name="empty_state_instructions">Verifique se:\n1. O aplicativo de mensagens está instalado\n2. Você visualizou atualizações recentemente\n3. Concedeu todas as permissões</string>
+    
+    <!-- Actions -->
+    <string name="action_refresh">Atualizar</string>
+    <string name="action_grid_size">Tamanho da Grade</string>
+    <string name="action_share">Compartilhar</string>
+    <string name="action_save">Salvar</string>
+    <string name="action_back">Voltar</string>
+    <string name="action_select_all">Selecionar Tudo</string>
+    <string name="action_clear_selection">Limpar Seleção</string>
+    <string name="action_download_selected">Baixar Selecionados</string>
+    <string name="items_selected">%d selecionados</string>
+    
+    <!-- Grid Sizes -->
+    <string name="grid_small">Pequeno</string>
+    <string name="grid_medium">Médio</string>
+    <string name="grid_large">Grande</string>
+    
+    <!-- Permissions -->
+    <string name="permission_required">Permissão Necessária</string>
+    <string name="permission_storage_access">Permissão Adicional Necessária</string>
+    <string name="permission_storage_message">Este aplicativo precisa de acesso para gerenciar o armazenamento externo para ler arquivos de mídia.</string>
+    <string name="permission_storage_instruction">Por favor, conceda a permissão de \'Acesso a todos os arquivos\' nas Configurações.</string>
+    <string name="permission_photos_title">Acesso a Fotos</string>
+    <string name="permission_photos_desc">Para salvar status de imagens do WhatsApp</string>
+    <string name="permission_videos_title">Acesso a Vídeos</string>
+    <string name="permission_videos_desc">Para salvar status de vídeos do WhatsApp</string>
+    <string name="permission_intro">Para salvar status do WhatsApp, precisamos de acesso a:</string>
+    <string name="permission_privacy_note">Valorizamos sua privacidade. Essas permissões são usadas apenas para acessar e salvar status do WhatsApp.</string>
+    
+    <!-- Buttons -->
+    <string name="button_open_settings">Abrir Configurações</string>
+    <string name="button_cancel">Cancelar</string>
+    <string name="button_continue">Continuar</string>
+    <string name="button_ok">OK</string>
+    <string name="button_open">Abrir</string>
+    
+    <!-- Status Messages -->
+    <string name="status_saving">Salvando status…</string>
+    <string name="status_saved">Status salvo com sucesso!</string>
+    <string name="status_save_failed">Falha ao salvar status: %1$s</string>
+    <string name="status_permission_required">Permissão de armazenamento necessária para acessar arquivos de mídia</string>
+    <string name="status_saved_multiple">%d itens salvos</string>
+    <string name="status_save_failed_multiple">Falha ao salvar %s: %s</string>
+    
+    <!-- Preview Screen -->
+    <string name="title_preview">Visualização</string>
+    <string name="preview_open_saved">Deseja abrir o %s salvo?</string>
+    <string name="preview_type_video">vídeo</string>
+    <string name="preview_type_image">imagem</string>
+</resources> 

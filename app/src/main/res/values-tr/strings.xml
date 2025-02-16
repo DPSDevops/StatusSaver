@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Status Saver</string>
+    
+    <!-- Main Screen -->
+    <string name="title_status_saver">Status Saver</string>
+    <string name="tab_all">Tümü</string>
+    <string name="tab_images">Resimler</string>
+    <string name="tab_videos">Videolar</string>
+    <string name="tab_recent">Yeni</string>
+    <string name="tab_older">Eski</string>
+    
+    <!-- Empty States -->
+    <string name="no_updates_found">Güncelleme bulunamadı</string>
+    <string name="no_images_found">Resim bulunamadı</string>
+    <string name="no_videos_found">Video bulunamadı</string>
+    <string name="no_recent_updates">Yeni güncelleme yok</string>
+    <string name="no_older_updates">Eski güncelleme yok</string>
+    
+    <!-- Instructions -->
+    <string name="empty_state_instructions">Lütfen kontrol edin:\n1. Mesajlaşma uygulaması yüklü mü\n2. Son zamanlarda durum görüntülediniz mi\n3. Tüm izinleri verdiniz mi</string>
+    
+    <!-- Actions -->
+    <string name="action_refresh">Yenile</string>
+    <string name="action_grid_size">Izgara Boyutu</string>
+    <string name="action_share">Paylaş</string>
+    <string name="action_save">Kaydet</string>
+    <string name="action_back">Geri</string>
+    <string name="action_select_all">Tümünü Seç</string>
+    <string name="action_clear_selection">Seçimi Temizle</string>
+    <string name="action_download_selected">Seçilenleri İndir</string>
+    <string name="items_selected">%d öğe seçildi</string>
+    
+    <!-- Grid Sizes -->
+    <string name="grid_small">Küçük</string>
+    <string name="grid_medium">Orta</string>
+    <string name="grid_large">Büyük</string>
+    
+    <!-- Permissions -->
+    <string name="permission_required">İzin Gerekli</string>
+    <string name="permission_storage_access">Ek İzin Gerekli</string>
+    <string name="permission_storage_message">Bu uygulama, medya dosyalarını okumak için harici depolama yönetimi iznine ihtiyaç duyuyor.</string>
+    <string name="permission_storage_instruction">Lütfen Ayarlar\'dan \'Tüm dosyalara erişim\' iznini verin.</string>
+    <string name="permission_photos_title">Fotoğraf Erişimi</string>
+    <string name="permission_photos_desc">WhatsApp resim durumlarını kaydetmek için</string>
+    <string name="permission_videos_title">Video Erişimi</string>
+    <string name="permission_videos_desc">WhatsApp video durumlarını kaydetmek için</string>
+    <string name="permission_intro">WhatsApp durumlarını kaydetmek için şu erişimlere ihtiyacımız var:</string>
+    <string name="permission_privacy_note">Gizliliğinize değer veriyoruz. Bu izinler yalnızca WhatsApp durumlarına erişmek ve kaydetmek için kullanılır.</string>
+    
+    <!-- Buttons -->
+    <string name="button_open_settings">Ayarları Aç</string>
+    <string name="button_cancel">İptal</string>
+    <string name="button_continue">Devam</string>
+    <string name="button_ok">Tamam</string>
+    <string name="button_open">Aç</string>
+    
+    <!-- Status Messages -->
+    <string name="status_saving">Durum kaydediliyor…</string>
+    <string name="status_saved">Durum başarıyla kaydedildi!</string>
+    <string name="status_save_failed">Durum kaydedilemedi: %1$s</string>
+    <string name="status_permission_required">Medya dosyalarına erişmek için depolama izni gerekli</string>
+    <string name="status_saved_multiple">%d öğe kaydedildi</string>
+    <string name="status_save_failed_multiple">%s kaydedilemedi: %s</string>
+    
+    <!-- Preview Screen -->
+    <string name="title_preview">Önizleme</string>
+    <string name="preview_open_saved">Kaydedilen %s açılsın mı?</string>
+    <string name="preview_type_video">video</string>
+    <string name="preview_type_image">resim</string>
+</resources> 

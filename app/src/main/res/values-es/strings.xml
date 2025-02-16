@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Guardador de Estados</string>
+    <string name="app_name">Status Saver</string>
     
     <!-- Main Screen -->
-    <string name="title_status_saver">Guardador de Estados</string>
+    <string name="title_status_saver">Status Saver</string>
     <string name="tab_all">Todos</string>
     <string name="tab_images">Imágenes</string>
     <string name="tab_videos">Videos</string>
@@ -22,10 +22,14 @@
     
     <!-- Actions -->
     <string name="action_refresh">Actualizar</string>
-    <string name="action_grid_size">Tamaño de Cuadrícula</string>
+    <string name="action_grid_size">Tamaño de cuadrícula</string>
     <string name="action_share">Compartir</string>
     <string name="action_save">Guardar</string>
     <string name="action_back">Atrás</string>
+    <string name="action_select_all">Seleccionar todo</string>
+    <string name="action_clear_selection">Limpiar selección</string>
+    <string name="action_download_selected">Descargar seleccionados</string>
+    <string name="items_selected">%d seleccionados</string>
     
     <!-- Grid Sizes -->
     <string name="grid_small">Pequeño</string>
@@ -33,28 +37,35 @@
     <string name="grid_large">Grande</string>
     
     <!-- Permissions -->
-    <string name="permission_required">Permiso Requerido</string>
-    <string name="permission_storage_access">Se Requiere Permiso Adicional</string>
-    <string name="permission_storage_message">Esta aplicación necesita acceso para administrar el almacenamiento externo para leer archivos multimedia.</string>
+    <string name="permission_required">Permiso requerido</string>
+    <string name="permission_storage_access">Permiso adicional requerido</string>
+    <string name="permission_storage_message">Esta aplicación necesita acceso para gestionar el almacenamiento externo para leer archivos multimedia.</string>
     <string name="permission_storage_instruction">Por favor, concede el permiso de \'Acceso a todos los archivos\' en Configuración.</string>
-    <string name="permission_photos_title">Acceso a Fotos</string>
-    <string name="permission_photos_desc">Para guardar estados de imagen</string>
-    <string name="permission_videos_title">Acceso a Videos</string>
-    <string name="permission_videos_desc">Para guardar estados de video</string>
-    <string name="permission_privacy_note">Valoramos tu privacidad. Estos permisos solo se utilizan para acceder y guardar archivos multimedia.</string>
+    <string name="permission_photos_title">Acceso a fotos</string>
+    <string name="permission_photos_desc">Para guardar estados de imágenes de WhatsApp</string>
+    <string name="permission_videos_title">Acceso a videos</string>
+    <string name="permission_videos_desc">Para guardar estados de videos de WhatsApp</string>
+    <string name="permission_intro">Para guardar estados de WhatsApp, necesitamos acceso a:</string>
+    <string name="permission_privacy_note">Valoramos tu privacidad. Estos permisos solo se utilizan para acceder y guardar estados de WhatsApp.</string>
     
     <!-- Buttons -->
-    <string name="button_open_settings">Abrir Configuración</string>
+    <string name="button_open_settings">Abrir configuración</string>
     <string name="button_cancel">Cancelar</string>
     <string name="button_continue">Continuar</string>
     <string name="button_ok">Aceptar</string>
+    <string name="button_open">Abrir</string>
     
     <!-- Status Messages -->
     <string name="status_saving">Guardando estado…</string>
     <string name="status_saved">¡Estado guardado exitosamente!</string>
-    <string name="status_save_failed">Error al guardar el estado: %1$s</string>
-    <string name="status_permission_required">Se requiere permiso de almacenamiento para acceder a los archivos multimedia</string>
+    <string name="status_save_failed">Error al guardar estado: %1$s</string>
+    <string name="status_permission_required">Se requiere permiso de almacenamiento para acceder a archivos multimedia</string>
+    <string name="status_saved_multiple">%d elementos guardados</string>
+    <string name="status_save_failed_multiple">Error al guardar %s: %s</string>
     
     <!-- Preview Screen -->
-    <string name="title_preview">Vista Previa</string>
+    <string name="title_preview">Vista previa</string>
+    <string name="preview_open_saved">¿Deseas abrir el %s guardado?</string>
+    <string name="preview_type_video">video</string>
+    <string name="preview_type_image">imagen</string>
 </resources> 

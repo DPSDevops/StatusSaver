@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">حافظ الحالة</string>
+    <string name="app_name">Status Saver</string>
     
     <!-- Main Screen -->
-    <string name="title_status_saver">حافظ الحالة</string>
+    <string name="title_status_saver">Status Saver</string>
     <string name="tab_all">الكل</string>
     <string name="tab_images">الصور</string>
     <string name="tab_videos">الفيديوهات</string>
@@ -14,11 +14,11 @@
     <string name="no_updates_found">لم يتم العثور على تحديثات</string>
     <string name="no_images_found">لم يتم العثور على صور</string>
     <string name="no_videos_found">لم يتم العثور على فيديوهات</string>
-    <string name="no_recent_updates">لم يتم العثور على تحديثات حديثة</string>
-    <string name="no_older_updates">لم يتم العثور على تحديثات قديمة</string>
+    <string name="no_recent_updates">لا توجد تحديثات حديثة</string>
+    <string name="no_older_updates">لا توجد تحديثات قديمة</string>
     
     <!-- Instructions -->
-    <string name="empty_state_instructions">تأكد من:\n1. تثبيت تطبيق المراسلة\n2. مشاهدة بعض التحديثات مؤخراً\n3. منح جميع الأذونات المطلوبة</string>
+    <string name="empty_state_instructions">تأكد من:\n1. تثبيت تطبيق المراسلة\n2. مشاهدة بعض التحديثات مؤخراً\n3. منح جميع الأذونات</string>
     
     <!-- Actions -->
     <string name="action_refresh">تحديث</string>
@@ -26,6 +26,10 @@
     <string name="action_share">مشاركة</string>
     <string name="action_save">حفظ</string>
     <string name="action_back">رجوع</string>
+    <string name="action_select_all">تحديد الكل</string>
+    <string name="action_clear_selection">مسح التحديد</string>
+    <string name="action_download_selected">تنزيل المحدد</string>
+    <string name="items_selected">تم تحديد %d</string>
     
     <!-- Grid Sizes -->
     <string name="grid_small">صغير</string>
@@ -35,26 +39,33 @@
     <!-- Permissions -->
     <string name="permission_required">الإذن مطلوب</string>
     <string name="permission_storage_access">مطلوب إذن إضافي</string>
-    <string name="permission_storage_message">يحتاج هذا التطبيق إلى إذن إدارة التخزين الخارجي لقراءة ملفات الوسائط.</string>
+    <string name="permission_storage_message">يحتاج هذا التطبيق إلى إذن لإدارة التخزين الخارجي لقراءة ملفات الوسائط.</string>
     <string name="permission_storage_instruction">يرجى منح إذن \'الوصول إلى جميع الملفات\' في الإعدادات.</string>
     <string name="permission_photos_title">الوصول إلى الصور</string>
-    <string name="permission_photos_desc">لحفظ حالات الصور</string>
+    <string name="permission_photos_desc">لحفظ حالات الصور من واتساب</string>
     <string name="permission_videos_title">الوصول إلى الفيديوهات</string>
-    <string name="permission_videos_desc">لحفظ حالات الفيديو</string>
-    <string name="permission_privacy_note">نحن نقدر خصوصيتك. تُستخدم هذه الأذونات فقط للوصول إلى ملفات الوسائط وحفظها.</string>
+    <string name="permission_videos_desc">لحفظ حالات الفيديو من واتساب</string>
+    <string name="permission_intro">لحفظ حالات واتساب، نحتاج إلى الوصول إلى:</string>
+    <string name="permission_privacy_note">نحن نحترم خصوصيتك. تُستخدم هذه الأذونات فقط للوصول إلى حالات واتساب وحفظها.</string>
     
     <!-- Buttons -->
     <string name="button_open_settings">فتح الإعدادات</string>
     <string name="button_cancel">إلغاء</string>
     <string name="button_continue">متابعة</string>
     <string name="button_ok">موافق</string>
+    <string name="button_open">فتح</string>
     
     <!-- Status Messages -->
     <string name="status_saving">جارٍ حفظ الحالة…</string>
     <string name="status_saved">تم حفظ الحالة بنجاح!</string>
     <string name="status_save_failed">فشل حفظ الحالة: %1$s</string>
     <string name="status_permission_required">إذن التخزين مطلوب للوصول إلى ملفات الوسائط</string>
+    <string name="status_saved_multiple">تم حفظ %d عنصر</string>
+    <string name="status_save_failed_multiple">فشل حفظ %s: %s</string>
     
     <!-- Preview Screen -->
     <string name="title_preview">معاينة</string>
+    <string name="preview_open_saved">هل تريد فتح %s المحفوظ؟</string>
+    <string name="preview_type_video">الفيديو</string>
+    <string name="preview_type_image">الصورة</string>
 </resources> 
