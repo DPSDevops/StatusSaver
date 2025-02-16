@@ -30,11 +30,15 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.io.File
 import java.io.FileOutputStream
+import android.os.Environment
+import android.provider.MediaStore
+import android.net.Uri as AndroidUri
+import android.content.ContentUris
 
 sealed class SaveStatus {
     object None : SaveStatus()
     object Saving : SaveStatus()
-    data class Success(val file: File) : SaveStatus()
+    data class Success(val file: File, val uri: Uri? = null) : SaveStatus()
     data class Error(val message: String) : SaveStatus()
 }
 
@@ -47,7 +51,42 @@ fun StatusPreviewScreen(
 ) {
     val context = LocalContext.current
     var saveStatus by remember { mutableStateOf<SaveStatus>(SaveStatus.None) }
+    var showOpenDialog by remember { mutableStateOf(false) }
     val scope = rememberCoroutineScope()
+    
+    // Dialog to open saved media
+    if (showOpenDialog) {
+        AlertDialog(
+            onDismissRequest = { showOpenDialog = false },
+            title = { Text("Status Saved") },
+            text = { Text("Would you like to open the saved ${if (statusItem.isVideo) "video" else "image"}?") },
+            confirmButton = {
+                TextButton(
+                    onClick = {
+                        showOpenDialog = false
+                        (saveStatus as? SaveStatus.Success)?.uri?.let { uri ->
+                            val intent = Intent(Intent.ACTION_VIEW).apply {
+                                setDataAndType(uri, if (statusItem.isVideo) "video/*" else "image/*")
+                                addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+                            }
+                            try {
+                                context.startActivity(intent)
+                            } catch (e: Exception) {
+                                e.printStackTrace()
+                            }
+                        }
+                    }
+                ) {
+                    Text("Open")
+                }
+            },
+            dismissButton = {
+                TextButton(onClick = { showOpenDialog = false }) {
+                    Text("Cancel")
+                }
+            }
+        )
+    }
     
     Scaffold(
         topBar = {
@@ -104,20 +143,67 @@ fun StatusPreviewScreen(
                                     saveStatus = SaveStatus.Saving
                                     try {
                                         val savedFile = withContext(Dispatchers.IO) {
-                                            val saveDir = File(context.getExternalFilesDir(null), "Saved Status")
-                                            if (!saveDir.exists()) {
-                                                saveDir.mkdirs()
+                                            // Create directory in Pictures directory for better gallery integration
+                                            val saveDir = File(
+                                                Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES),
+                                                "Status Saver"
+                                            ).apply {
+                                                mkdirs()
                                             }
                                             
-                                            val destFile = File(saveDir, statusItem.file.name)
+                                            val timestamp = System.currentTimeMillis()
+                                            val extension = if (statusItem.isVideo) ".mp4" else ".jpg"
+                                            val fileName = "Status_$timestamp$extension"
+                                            
+                                            val destFile = File(saveDir, fileName)
+                                            
                                             statusItem.file.inputStream().use { input ->
                                                 FileOutputStream(destFile).use { output ->
-                                                    input.copyTo(output)
+                                                    val buffer = ByteArray(8 * 1024)
+                                                    var bytes = input.read(buffer)
+                                                    while (bytes >= 0) {
+                                                        output.write(buffer, 0, bytes)
+                                                        bytes = input.read(buffer)
+                                                    }
+                                                    output.flush()
                                                 }
                                             }
                                             destFile
                                         }
-                                        saveStatus = SaveStatus.Success(savedFile)
+                                        
+                                        // Notify media scanner and get content URI
+                                        val contentUri = withContext(Dispatchers.IO) {
+                                            val mediaScanIntent = Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE)
+                                            val fileUri = AndroidUri.fromFile(savedFile)
+                                            mediaScanIntent.data = fileUri
+                                            context.sendBroadcast(mediaScanIntent)
+                                            
+                                            // Get content URI for the saved file
+                                            val projection = arrayOf(MediaStore.MediaColumns._ID)
+                                            val selection = MediaStore.MediaColumns.DATA + "=?"
+                                            val selectionArgs = arrayOf(savedFile.absolutePath)
+                                            val contentUri = if (statusItem.isVideo) {
+                                                MediaStore.Video.Media.EXTERNAL_CONTENT_URI
+                                            } else {
+                                                MediaStore.Images.Media.EXTERNAL_CONTENT_URI
+                                            }
+                                            
+                                            context.contentResolver.query(
+                                                contentUri,
+                                                projection,
+                                                selection,
+                                                selectionArgs,
+                                                null
+                                            )?.use { cursor ->
+                                                if (cursor.moveToFirst()) {
+                                                    val id = cursor.getLong(0)
+                                                    ContentUris.withAppendedId(contentUri, id)
+                                                } else null
+                                            }
+                                        }
+                                        
+                                        saveStatus = SaveStatus.Success(savedFile, contentUri)
+                                        showOpenDialog = true
                                     } catch (e: Exception) {
                                         e.printStackTrace()
                                         saveStatus = SaveStatus.Error("Failed to save status: ${e.message}")
