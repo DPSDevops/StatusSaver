@@ -26,6 +26,10 @@
     <string name="action_share">Share</string>
     <string name="action_save">Save</string>
     <string name="action_back">Back</string>
+    <string name="action_select_all">Select All</string>
+    <string name="action_clear_selection">Clear Selection</string>
+    <string name="action_download_selected">Download Selected</string>
+    <string name="items_selected">%d selected</string>
     
     <!-- Grid Sizes -->
     <string name="grid_small">Small</string>
@@ -38,23 +42,30 @@
     <string name="permission_storage_message">This app needs access to manage external storage to read media files.</string>
     <string name="permission_storage_instruction">Please grant \'All files access\' permission in Settings.</string>
     <string name="permission_photos_title">Photos Access</string>
-    <string name="permission_photos_desc">To save image statuses</string>
+    <string name="permission_photos_desc">To save image statuses from WhatsApp</string>
     <string name="permission_videos_title">Video Access</string>
-    <string name="permission_videos_desc">To save video statuses</string>
-    <string name="permission_privacy_note">We value your privacy. These permissions are only used to access and save media files.</string>
+    <string name="permission_videos_desc">To save video statuses from WhatsApp</string>
+    <string name="permission_intro">To save WhatsApp statuses, we need access to:</string>
+    <string name="permission_privacy_note">We value your privacy. These permissions are only used to access and save WhatsApp statuses.</string>
     
     <!-- Buttons -->
     <string name="button_open_settings">Open Settings</string>
     <string name="button_cancel">Cancel</string>
     <string name="button_continue">Continue</string>
     <string name="button_ok">OK</string>
+    <string name="button_open">Open</string>
     
     <!-- Status Messages -->
     <string name="status_saving">Saving status…</string>
     <string name="status_saved">Status saved successfully!</string>
     <string name="status_save_failed">Failed to save status: %1$s</string>
     <string name="status_permission_required">Storage permission is required to access media files</string>
+    <string name="status_saved_multiple">Saved %d items</string>
+    <string name="status_save_failed_multiple">Failed to save %s: %s</string>
     
     <!-- Preview Screen -->
     <string name="title_preview">Preview</string>
+    <string name="preview_open_saved">Would you like to open the saved %s?</string>
+    <string name="preview_type_video">video</string>
+    <string name="preview_type_image">image</string>
 </resources>

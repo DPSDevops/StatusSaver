@@ -19,6 +19,37 @@ class StatusViewModel : ViewModel() {
     private val _statusItems = MutableStateFlow<List<StatusItem>>(emptyList())
     val statusItems: StateFlow<List<StatusItem>> = _statusItems
 
+    // Selection state
+    private val _selectedItems = MutableStateFlow<Set<StatusItem>>(emptySet())
+    val selectedItems: StateFlow<Set<StatusItem>> = _selectedItems
+    
+    private val _isSelectionMode = MutableStateFlow(false)
+    val isSelectionMode: StateFlow<Boolean> = _isSelectionMode
+
+    fun toggleSelection(item: StatusItem) {
+        val currentSelection = _selectedItems.value.toMutableSet()
+        if (currentSelection.contains(item)) {
+            currentSelection.remove(item)
+            if (currentSelection.isEmpty()) {
+                _isSelectionMode.value = false
+            }
+        } else {
+            currentSelection.add(item)
+            _isSelectionMode.value = true
+        }
+        _selectedItems.value = currentSelection
+    }
+
+    fun selectAll() {
+        _selectedItems.value = _statusItems.value.toSet()
+        _isSelectionMode.value = true
+    }
+
+    fun clearSelection() {
+        _selectedItems.value = emptySet()
+        _isSelectionMode.value = false
+    }
+
     private fun getWhatsAppPaths(context: Context): List<String> {
         val paths = mutableListOf<String>()
         
@@ -45,6 +76,14 @@ class StatusViewModel : ViewModel() {
     fun loadStatuses(context: Context) {
         viewModelScope.launch(Dispatchers.IO) {
             Log.d(TAG, "Starting status load...")
+            
+            // Check if we have necessary permissions
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R && !Environment.isExternalStorageManager()) {
+                Log.d(TAG, "Missing MANAGE_EXTERNAL_STORAGE permission")
+                _statusItems.emit(emptyList())
+                return@launch
+            }
+            
             var foundStatuses = false
             
             for (path in getWhatsAppPaths(context)) {
@@ -83,7 +122,7 @@ class StatusViewModel : ViewModel() {
             }
             
             if (!foundStatuses) {
-                Log.e(TAG, "No status files found in any location")
+                Log.d(TAG, "No status files found in any location")
                 _statusItems.emit(emptyList())
             }
         }

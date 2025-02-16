@@ -1,16 +1,15 @@
 package com.dps.mediasaver.ui.screens
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Add
-import androidx.compose.material.icons.filled.Done
-import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import com.dps.mediasaver.R
 
 @Composable
 fun PermissionScreen(
@@ -24,12 +23,11 @@ fun PermissionScreen(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
-        // App Icon or Illustration
-        Icon(
-            imageVector = Icons.Default.Menu,
+        // Storage Illustration
+        Image(
+            painter = painterResource(id = R.drawable.ill_storage),
             contentDescription = null,
-            modifier = Modifier.size(120.dp),
-            tint = MaterialTheme.colorScheme.primary
+            modifier = Modifier.size(180.dp)
         )
 
         Spacer(modifier = Modifier.height(32.dp))
@@ -55,7 +53,7 @@ fun PermissionScreen(
 
         // Permission details
         PermissionItem(
-            icon = Icons.Default.Add,
+            iconResId = R.drawable.ic_photo_access,
             title = "Photos Access",
             description = "To save image statuses from WhatsApp"
         )
@@ -63,7 +61,7 @@ fun PermissionScreen(
         Spacer(modifier = Modifier.height(16.dp))
 
         PermissionItem(
-            icon = Icons.Default.Done,
+            iconResId = R.drawable.ic_video_access,
             title = "Video Access",
             description = "To save video statuses from WhatsApp"
         )
@@ -91,7 +89,7 @@ fun PermissionScreen(
 
 @Composable
 private fun PermissionItem(
-    icon: androidx.compose.ui.graphics.vector.ImageVector,
+    iconResId: Int,
     title: String,
     description: String
 ) {
@@ -107,7 +105,7 @@ private fun PermissionItem(
             verticalAlignment = Alignment.CenterVertically
         ) {
             Icon(
-                imageVector = icon,
+                painter = painterResource(id = iconResId),
                 contentDescription = null,
                 tint = MaterialTheme.colorScheme.primary
             )

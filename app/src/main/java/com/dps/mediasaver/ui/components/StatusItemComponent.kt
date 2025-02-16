@@ -4,9 +4,11 @@ import android.graphics.Bitmap
 import android.media.MediaMetadataRetriever
 import androidx.compose.animation.*
 import androidx.compose.animation.core.*
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.interaction.collectIsPressedAsState
 import androidx.compose.foundation.layout.*
@@ -31,11 +33,15 @@ import kotlinx.coroutines.withContext
 import java.text.SimpleDateFormat
 import java.util.*
 
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun StatusItemComponent(
     statusItem: StatusItem,
     onClick: (StatusItem) -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    isSelected: Boolean = false,
+    onLongClick: ((StatusItem) -> Unit)? = null,
+    isSelectionMode: Boolean = false
 ) {
     val context = LocalContext.current
     var thumbnail by remember { mutableStateOf<Bitmap?>(null) }
@@ -80,6 +86,16 @@ fun StatusItemComponent(
                 interactionSource = interactionSource,
                 indication = rememberRipple(),
                 onClick = { onClick(statusItem) }
+            )
+            .then(
+                if (onLongClick != null) {
+                    Modifier.combinedClickable(
+                        onClick = { onClick(statusItem) },
+                        onLongClick = { onLongClick(statusItem) }
+                    )
+                } else {
+                    Modifier
+                }
             ),
         tonalElevation = if (isPressed) 0.dp else 2.dp,
         shadowElevation = if (isPressed) 0.dp else 2.dp
@@ -113,6 +129,23 @@ fun StatusItemComponent(
                         contentDescription = "Play Video",
                         modifier = Modifier.size(48.dp),
                         tint = MaterialTheme.colorScheme.onSurface
+                    )
+                }
+            }
+
+            // Selection overlay
+            if (isSelectionMode || isSelected) {
+                Box(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .background(MaterialTheme.colorScheme.surface.copy(alpha = if (isSelected) 0.3f else 0.1f))
+                ) {
+                    Checkbox(
+                        checked = isSelected,
+                        onCheckedChange = null,
+                        modifier = Modifier
+                            .padding(8.dp)
+                            .align(Alignment.TopEnd)
                     )
                 }
             }

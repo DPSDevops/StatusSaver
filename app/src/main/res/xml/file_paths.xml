@@ -6,4 +6,10 @@
     <external-path
         name="external_media"
         path="." />
+    <files-path
+        name="internal_media"
+        path="Saved Media/" />
+    <cache-path
+        name="cache"
+        path="/" />
 </paths> 
