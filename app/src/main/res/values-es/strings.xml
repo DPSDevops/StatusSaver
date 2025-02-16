@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Guardador de Estados</string>
+    
+    <!-- Main Screen -->
+    <string name="title_status_saver">Guardador de Estados</string>
+    <string name="tab_all">Todos</string>
+    <string name="tab_images">Imágenes</string>
+    <string name="tab_videos">Videos</string>
+    <string name="tab_recent">Recientes</string>
+    <string name="tab_older">Antiguos</string>
+    
+    <!-- Empty States -->
+    <string name="no_updates_found">No se encontraron actualizaciones</string>
+    <string name="no_images_found">No se encontraron imágenes</string>
+    <string name="no_videos_found">No se encontraron videos</string>
+    <string name="no_recent_updates">No hay actualizaciones recientes</string>
+    <string name="no_older_updates">No hay actualizaciones antiguas</string>
+    
+    <!-- Instructions -->
+    <string name="empty_state_instructions">Asegúrate de:\n1. Tener la aplicación de mensajería instalada\n2. Haber visto actualizaciones recientemente\n3. Haber otorgado todos los permisos</string>
+    
+    <!-- Actions -->
+    <string name="action_refresh">Actualizar</string>
+    <string name="action_grid_size">Tamaño de Cuadrícula</string>
+    <string name="action_share">Compartir</string>
+    <string name="action_save">Guardar</string>
+    <string name="action_back">Atrás</string>
+    
+    <!-- Grid Sizes -->
+    <string name="grid_small">Pequeño</string>
+    <string name="grid_medium">Mediano</string>
+    <string name="grid_large">Grande</string>
+    
+    <!-- Permissions -->
+    <string name="permission_required">Permiso Requerido</string>
+    <string name="permission_storage_access">Se Requiere Permiso Adicional</string>
+    <string name="permission_storage_message">Esta aplicación necesita acceso para administrar el almacenamiento externo para leer archivos multimedia.</string>
+    <string name="permission_storage_instruction">Por favor, concede el permiso de \'Acceso a todos los archivos\' en Configuración.</string>
+    <string name="permission_photos_title">Acceso a Fotos</string>
+    <string name="permission_photos_desc">Para guardar estados de imagen</string>
+    <string name="permission_videos_title">Acceso a Videos</string>
+    <string name="permission_videos_desc">Para guardar estados de video</string>
+    <string name="permission_privacy_note">Valoramos tu privacidad. Estos permisos solo se utilizan para acceder y guardar archivos multimedia.</string>
+    
+    <!-- Buttons -->
+    <string name="button_open_settings">Abrir Configuración</string>
+    <string name="button_cancel">Cancelar</string>
+    <string name="button_continue">Continuar</string>
+    <string name="button_ok">Aceptar</string>
+    
+    <!-- Status Messages -->
+    <string name="status_saving">Guardando estado…</string>
+    <string name="status_saved">¡Estado guardado exitosamente!</string>
+    <string name="status_save_failed">Error al guardar el estado: %1$s</string>
+    <string name="status_permission_required">Se requiere permiso de almacenamiento para acceder a los archivos multimedia</string>
+    
+    <!-- Preview Screen -->
+    <string name="title_preview">Vista Previa</string>
+</resources> 

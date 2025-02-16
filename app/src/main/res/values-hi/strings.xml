@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">स्टेटस सेवर</string>
+    
+    <!-- Main Screen -->
+    <string name="title_status_saver">स्टेटस सेवर</string>
+    <string name="tab_all">सभी</string>
+    <string name="tab_images">चित्र</string>
+    <string name="tab_videos">वीडियो</string>
+    <string name="tab_recent">हाल के</string>
+    <string name="tab_older">पुराने</string>
+    
+    <!-- Empty States -->
+    <string name="no_updates_found">कोई अपडेट नहीं मिला</string>
+    <string name="no_images_found">कोई चित्र नहीं मिला</string>
+    <string name="no_videos_found">कोई वीडियो नहीं मिला</string>
+    <string name="no_recent_updates">कोई हाल का अपडेट नहीं मिला</string>
+    <string name="no_older_updates">कोई पुराना अपडेट नहीं मिला</string>
+    
+    <!-- Instructions -->
+    <string name="empty_state_instructions">सुनिश्चित करें कि:\n1. मैसेजिंग ऐप इंस्टॉल है\n2. हाल ही में कुछ अपडेट देखे हैं\n3. सभी अनुमतियां दी गई हैं</string>
+    
+    <!-- Actions -->
+    <string name="action_refresh">रीफ्रेश</string>
+    <string name="action_grid_size">ग्रिड साइज</string>
+    <string name="action_share">शेयर</string>
+    <string name="action_save">सेव</string>
+    <string name="action_back">वापस</string>
+    
+    <!-- Grid Sizes -->
+    <string name="grid_small">छोटा</string>
+    <string name="grid_medium">मध्यम</string>
+    <string name="grid_large">बड़ा</string>
+    
+    <!-- Permissions -->
+    <string name="permission_required">अनुमति आवश्यक</string>
+    <string name="permission_storage_access">अतिरिक्त अनुमति आवश्यक</string>
+    <string name="permission_storage_message">मीडिया फ़ाइलें पढ़ने के लिए इस ऐप को बाहरी स्टोरेज प्रबंधित करने की अनुमति चाहिए।</string>
+    <string name="permission_storage_instruction">कृपया सेटिंग्स में \'सभी फ़ाइल एक्सेस\' की अनुमति दें।</string>
+    <string name="permission_photos_title">फ़ोटो एक्सेस</string>
+    <string name="permission_photos_desc">चित्र स्टेटस सेव करने के लिए</string>
+    <string name="permission_videos_title">वीडियो एक्सेस</string>
+    <string name="permission_videos_desc">वीडियो स्टेटस सेव करने के लिए</string>
+    <string name="permission_privacy_note">हम आपकी गोपनीयता का सम्मान करते हैं। ये अनुमतियां केवल मीडिया फ़ाइलों को एक्सेस और सेव करने के लिए उपयोग की जाती हैं।</string>
+    
+    <!-- Buttons -->
+    <string name="button_open_settings">सेटिंग्स खोलें</string>
+    <string name="button_cancel">रद्द करें</string>
+    <string name="button_continue">जारी रखें</string>
+    <string name="button_ok">ठीक है</string>
+    
+    <!-- Status Messages -->
+    <string name="status_saving">स्टेटस सेव हो रहा है…</string>
+    <string name="status_saved">स्टेटस सफलतापूर्वक सेव हो गया!</string>
+    <string name="status_save_failed">स्टेटस सेव करने में विफल: %1$s</string>
+    <string name="status_permission_required">मीडिया फ़ाइलों को एक्सेस करने के लिए स्टोरेज अनुमति आवश्यक है</string>
+    
+    <!-- Preview Screen -->
+    <string name="title_preview">पूर्वावलोकन</string>
+</resources> 

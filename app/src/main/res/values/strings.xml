@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Status Saver</string>
+    
+    <!-- Main Screen -->
+    <string name="title_status_saver">Status Saver</string>
+    <string name="tab_all">All</string>
+    <string name="tab_images">Images</string>
+    <string name="tab_videos">Videos</string>
+    <string name="tab_recent">Recent</string>
+    <string name="tab_older">Older</string>
+    
+    <!-- Empty States -->
+    <string name="no_updates_found">No updates found</string>
+    <string name="no_images_found">No images found</string>
+    <string name="no_videos_found">No videos found</string>
+    <string name="no_recent_updates">No recent updates found</string>
+    <string name="no_older_updates">No older updates found</string>
+    
+    <!-- Instructions -->
+    <string name="empty_state_instructions">Make sure you:\n1. Have the messaging app installed\n2. Have viewed some updates recently\n3. Have granted all permissions</string>
+    
+    <!-- Actions -->
+    <string name="action_refresh">Refresh</string>
+    <string name="action_grid_size">Grid Size</string>
+    <string name="action_share">Share</string>
+    <string name="action_save">Save</string>
+    <string name="action_back">Back</string>
+    
+    <!-- Grid Sizes -->
+    <string name="grid_small">Small</string>
+    <string name="grid_medium">Medium</string>
+    <string name="grid_large">Large</string>
+    
+    <!-- Permissions -->
+    <string name="permission_required">Permission Required</string>
+    <string name="permission_storage_access">Additional Permission Required</string>
+    <string name="permission_storage_message">This app needs access to manage external storage to read media files.</string>
+    <string name="permission_storage_instruction">Please grant \'All files access\' permission in Settings.</string>
+    <string name="permission_photos_title">Photos Access</string>
+    <string name="permission_photos_desc">To save image statuses</string>
+    <string name="permission_videos_title">Video Access</string>
+    <string name="permission_videos_desc">To save video statuses</string>
+    <string name="permission_privacy_note">We value your privacy. These permissions are only used to access and save media files.</string>
+    
+    <!-- Buttons -->
+    <string name="button_open_settings">Open Settings</string>
+    <string name="button_cancel">Cancel</string>
+    <string name="button_continue">Continue</string>
+    <string name="button_ok">OK</string>
+    
+    <!-- Status Messages -->
+    <string name="status_saving">Saving status…</string>
+    <string name="status_saved">Status saved successfully!</string>
+    <string name="status_save_failed">Failed to save status: %1$s</string>
+    <string name="status_permission_required">Storage permission is required to access media files</string>
+    
+    <!-- Preview Screen -->
+    <string name="title_preview">Preview</string>
+</resources>

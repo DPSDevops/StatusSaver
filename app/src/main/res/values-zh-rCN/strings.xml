@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">状态保存器</string>
+    
+    <!-- Main Screen -->
+    <string name="title_status_saver">状态保存器</string>
+    <string name="tab_all">全部</string>
+    <string name="tab_images">图片</string>
+    <string name="tab_videos">视频</string>
+    <string name="tab_recent">最近</string>
+    <string name="tab_older">较早</string>
+    
+    <!-- Empty States -->
+    <string name="no_updates_found">未找到更新</string>
+    <string name="no_images_found">未找到图片</string>
+    <string name="no_videos_found">未找到视频</string>
+    <string name="no_recent_updates">未找到最近更新</string>
+    <string name="no_older_updates">未找到较早更新</string>
+    
+    <!-- Instructions -->
+    <string name="empty_state_instructions">请确保：\n1. 已安装消息应用\n2. 最近查看过一些更新\n3. 已授予所有权限</string>
+    
+    <!-- Actions -->
+    <string name="action_refresh">刷新</string>
+    <string name="action_grid_size">网格大小</string>
+    <string name="action_share">分享</string>
+    <string name="action_save">保存</string>
+    <string name="action_back">返回</string>
+    
+    <!-- Grid Sizes -->
+    <string name="grid_small">小</string>
+    <string name="grid_medium">中</string>
+    <string name="grid_large">大</string>
+    
+    <!-- Permissions -->
+    <string name="permission_required">需要权限</string>
+    <string name="permission_storage_access">需要额外权限</string>
+    <string name="permission_storage_message">此应用需要访问外部存储权限以读取媒体文件。</string>
+    <string name="permission_storage_instruction">请在设置中授予"所有文件访问权限"。</string>
+    <string name="permission_photos_title">照片访问权限</string>
+    <string name="permission_photos_desc">用于保存图片状态</string>
+    <string name="permission_videos_title">视频访问权限</string>
+    <string name="permission_videos_desc">用于保存视频状态</string>
+    <string name="permission_privacy_note">我们重视您的隐私。这些权限仅用于访问和保存媒体文件。</string>
+    
+    <!-- Buttons -->
+    <string name="button_open_settings">打开设置</string>
+    <string name="button_cancel">取消</string>
+    <string name="button_continue">继续</string>
+    <string name="button_ok">确定</string>
+    
+    <!-- Status Messages -->
+    <string name="status_saving">正在保存状态…</string>
+    <string name="status_saved">状态保存成功！</string>
+    <string name="status_save_failed">保存状态失败：%1$s</string>
+    <string name="status_permission_required">需要存储权限才能访问媒体文件</string>
+    
+    <!-- Preview Screen -->
+    <string name="title_preview">预览</string>
+</resources> 
