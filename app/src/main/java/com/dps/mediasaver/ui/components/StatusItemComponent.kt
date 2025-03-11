@@ -12,6 +12,11 @@ import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.interaction.collectIsPressedAsState
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Check
+import androidx.compose.material.icons.filled.PlayArrow
 import androidx.compose.material.ripple.rememberRipple
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
@@ -19,10 +24,13 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.scale
+import androidx.compose.ui.draw.shadow
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.dps.mediasaver.R
@@ -49,7 +57,7 @@ fun StatusItemComponent(
     val interactionSource = remember { MutableInteractionSource() }
     val isPressed by interactionSource.collectIsPressedAsState()
 
-    // Animation for press effect
+    // Enhanced animation for press effect
     val scale by animateFloatAsState(
         targetValue = if (isPressed) 0.95f else 1f,
         animationSpec = spring(
@@ -76,15 +84,16 @@ fun StatusItemComponent(
         }
     }
 
-    Surface(
+    Card(
         modifier = modifier
             .fillMaxWidth()
             .aspectRatio(1f)
-            .clip(MaterialTheme.shapes.medium)
+            .padding(4.dp)
             .scale(scale)
+            .clip(RoundedCornerShape(12.dp))
             .clickable(
                 interactionSource = interactionSource,
-                indication = rememberRipple(),
+                indication = rememberRipple(bounded = true),
                 onClick = { onClick(statusItem) }
             )
             .then(
@@ -97,10 +106,12 @@ fun StatusItemComponent(
                     Modifier
                 }
             ),
-        tonalElevation = if (isPressed) 0.dp else 2.dp,
-        shadowElevation = if (isPressed) 0.dp else 2.dp
+        elevation = CardDefaults.cardElevation(
+            defaultElevation = 4.dp,
+            pressedElevation = 0.dp
+        )
     ) {
-        Box {
+        Box(modifier = Modifier.fillMaxSize()) {
             if (statusItem.isVideo && thumbnail != null) {
                 Image(
                     bitmap = thumbnail!!.asImageBitmap(),
@@ -117,58 +128,85 @@ fun StatusItemComponent(
                 )
             }
             
+            // Improved video play button
             if (statusItem.isVideo) {
                 Box(
                     modifier = Modifier
                         .fillMaxSize()
-                        .background(MaterialTheme.colorScheme.surface.copy(alpha = 0.3f)),
+                        .background(Color.Black.copy(alpha = 0.3f)),
                     contentAlignment = Alignment.Center
                 ) {
-                    Icon(
-                        painter = painterResource(id = R.drawable.ic_play),
-                        contentDescription = "Play Video",
-                        modifier = Modifier.size(48.dp),
-                        tint = MaterialTheme.colorScheme.onSurface
-                    )
+                    Surface(
+                        shape = CircleShape,
+                        color = MaterialTheme.colorScheme.primary.copy(alpha = 0.8f),
+                        modifier = Modifier.size(40.dp),
+                    ) {
+                        Icon(
+                            imageVector = Icons.Default.PlayArrow,
+                            contentDescription = "Play Video",
+                            modifier = Modifier
+                                .padding(8.dp)
+                                .size(24.dp),
+                            tint = MaterialTheme.colorScheme.onPrimary
+                        )
+                    }
                 }
             }
 
-            // Selection overlay
-            if (isSelectionMode || isSelected) {
+            // Improved selection indicator
+            if (isSelected) {
                 Box(
                     modifier = Modifier
                         .fillMaxSize()
-                        .background(MaterialTheme.colorScheme.surface.copy(alpha = if (isSelected) 0.3f else 0.1f))
+                        .background(MaterialTheme.colorScheme.primary.copy(alpha = 0.3f))
                 ) {
-                    Checkbox(
-                        checked = isSelected,
-                        onCheckedChange = null,
+                    Surface(
+                        shape = CircleShape,
+                        color = MaterialTheme.colorScheme.primary,
                         modifier = Modifier
                             .padding(8.dp)
+                            .size(28.dp)
                             .align(Alignment.TopEnd)
-                    )
+                    ) {
+                        Icon(
+                            imageVector = Icons.Default.Check,
+                            contentDescription = "Selected",
+                            tint = MaterialTheme.colorScheme.onPrimary,
+                            modifier = Modifier.padding(4.dp)
+                        )
+                    }
                 }
+            } else if (isSelectionMode) {
+                Box(
+                    modifier = Modifier
+                        .size(28.dp)
+                        .padding(8.dp)
+                        .align(Alignment.TopEnd)
+                        .background(
+                            color = MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.7f),
+                            shape = CircleShape
+                        )
+                )
             }
             
-            // Time indicator with animation
-            AnimatedVisibility(
-                visible = true,
-                enter = fadeIn() + expandHorizontally(),
-                exit = fadeOut() + shrinkHorizontally()
+            // Time indicator
+            Box(
+                modifier = Modifier
+                    .align(Alignment.BottomStart)
+                    .padding(8.dp)
             ) {
                 Surface(
-                    modifier = Modifier
-                        .padding(8.dp)
-                        .align(Alignment.BottomStart),
-                    color = MaterialTheme.colorScheme.surface.copy(alpha = 0.7f),
-                    shape = MaterialTheme.shapes.extraSmall
+                    color = MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.7f),
+                    shape = RoundedCornerShape(8.dp)
                 ) {
                     Text(
                         text = SimpleDateFormat("HH:mm", Locale.getDefault())
                             .format(Date(statusItem.timestamp)),
-                        style = MaterialTheme.typography.labelSmall,
-                        color = MaterialTheme.colorScheme.onSurface,
-                        modifier = Modifier.padding(horizontal = 6.dp, vertical = 2.dp)
+                        style = MaterialTheme.typography.labelSmall.copy(
+                            fontWeight = FontWeight.Medium
+                        ),
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                        modifier = Modifier.padding(horizontal = 8.dp, vertical = 4.dp)
                     )
                 }
             }

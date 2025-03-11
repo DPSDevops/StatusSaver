@@ -3,18 +3,28 @@ package com.dps.mediasaver.ui.screens
 import android.content.Intent
 import android.net.Uri
 import androidx.compose.animation.*
+import androidx.compose.animation.core.*
 import androidx.compose.foundation.background
+import androidx.compose.foundation.interaction.MutableInteractionSource
+import androidx.compose.foundation.interaction.collectIsPressedAsState
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.filled.Share
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.core.content.FileProvider
@@ -54,14 +64,37 @@ fun StatusPreviewScreen(
     var showOpenDialog by remember { mutableStateOf(false) }
     val scope = rememberCoroutineScope()
     
-    // Dialog to open saved media
+    // Dialog to open saved media with improved UI
     if (showOpenDialog) {
         AlertDialog(
             onDismissRequest = { showOpenDialog = false },
-            title = { Text("Status Saved") },
-            text = { Text("Would you like to open the saved ${if (statusItem.isVideo) "video" else "image"}?") },
+            title = { 
+                Text(
+                    "Status Saved Successfully!",
+                    style = MaterialTheme.typography.headlineSmall,
+                    fontWeight = FontWeight.Bold
+                ) 
+            },
+            text = { 
+                Column(
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                    verticalArrangement = Arrangement.spacedBy(16.dp)
+                ) {
+                    Icon(
+                        painter = painterResource(id = R.drawable.ic_download),
+                        contentDescription = null,
+                        tint = MaterialTheme.colorScheme.primary,
+                        modifier = Modifier.size(48.dp)
+                    )
+                    
+                    Text(
+                        text = "Would you like to open the saved ${if (statusItem.isVideo) "video" else "image"}?",
+                        textAlign = TextAlign.Center
+                    )
+                }
+            },
             confirmButton = {
-                TextButton(
+                Button(
                     onClick = {
                         showOpenDialog = false
                         (saveStatus as? SaveStatus.Success)?.uri?.let { uri ->
@@ -75,33 +108,63 @@ fun StatusPreviewScreen(
                                 e.printStackTrace()
                             }
                         }
-                    }
+                    },
+                    shape = RoundedCornerShape(8.dp)
                 ) {
                     Text("Open")
                 }
             },
             dismissButton = {
-                TextButton(onClick = { showOpenDialog = false }) {
+                OutlinedButton(
+                    onClick = { showOpenDialog = false },
+                    shape = RoundedCornerShape(8.dp)
+                ) {
                     Text("Cancel")
                 }
-            }
+            },
+            shape = RoundedCornerShape(16.dp),
+            containerColor = MaterialTheme.colorScheme.surface,
+            tonalElevation = 8.dp
         )
     }
     
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text("Preview") },
+                title = { 
+                    Text(
+                        text = "Preview",
+                        style = MaterialTheme.typography.titleLarge,
+                        fontWeight = FontWeight.SemiBold
+                    ) 
+                },
                 navigationIcon = {
                     IconButton(onClick = onBackPressed) {
-                        Icon(Icons.Default.ArrowBack, contentDescription = "Back")
+                        Icon(
+                            imageVector = Icons.Default.ArrowBack,
+                            contentDescription = "Back"
+                        )
                     }
-                }
+                },
+                colors = TopAppBarDefaults.topAppBarColors(
+                    containerColor = MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.95f)
+                )
             )
         },
         bottomBar = {
             BottomAppBar(
                 actions = {
+                    // Share button with bounce animation
+                    val interactionSource = remember { MutableInteractionSource() }
+                    val isPressed by interactionSource.collectIsPressedAsState()
+                    val scale by animateFloatAsState(
+                        targetValue = if (isPressed) 0.85f else 1f,
+                        animationSpec = spring(
+                            dampingRatio = Spring.DampingRatioMediumBouncy,
+                            stiffness = Spring.StiffnessLow
+                        )
+                    )
+                    
                     IconButton(
                         onClick = {
                             if (saveStatus !is SaveStatus.Saving) {
@@ -123,11 +186,13 @@ fun StatusPreviewScreen(
                                 }
                                 context.startActivity(Intent.createChooser(intent, "Share Status"))
                             }
-                        }
+                        },
+                        interactionSource = interactionSource
                     ) {
                         Icon(
-                            painter = painterResource(id = R.drawable.ic_share),
+                            imageVector = Icons.Default.Share,
                             contentDescription = "Share",
+                            modifier = Modifier.scale(scale),
                             tint = if (saveStatus is SaveStatus.Saving) 
                                 MaterialTheme.colorScheme.onSurface.copy(alpha = 0.38f)
                             else 
@@ -210,21 +275,31 @@ fun StatusPreviewScreen(
                                     }
                                 }
                             }
-                        }
+                        },
+                        shape = CircleShape,
+                        containerColor = MaterialTheme.colorScheme.primary,
+                        contentColor = MaterialTheme.colorScheme.onPrimary,
+                        elevation = FloatingActionButtonDefaults.elevation(
+                            defaultElevation = 6.dp,
+                            pressedElevation = 12.dp
+                        )
                     ) {
                         if (saveStatus is SaveStatus.Saving) {
                             CircularProgressIndicator(
                                 modifier = Modifier.size(24.dp),
-                                color = MaterialTheme.colorScheme.onPrimaryContainer
+                                color = MaterialTheme.colorScheme.onPrimary,
+                                strokeWidth = 2.dp
                             )
                         } else {
                             Icon(
                                 painter = painterResource(id = R.drawable.ic_download),
-                                contentDescription = "Save"
+                                contentDescription = "Save",
+                                modifier = Modifier.size(24.dp)
                             )
                         }
                     }
-                }
+                },
+                containerColor = MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.95f)
             )
         }
     ) { padding ->
@@ -237,44 +312,118 @@ fun StatusPreviewScreen(
             if (statusItem.isVideo) {
                 VideoPlayer(uri = statusItem.uri)
             } else {
-                AsyncImage(
-                    model = statusItem.uri,
-                    contentDescription = "Status Image",
+                Box(
                     modifier = Modifier.fillMaxSize(),
-                    contentScale = ContentScale.Fit
-                )
+                    contentAlignment = Alignment.Center
+                ) {
+                    AsyncImage(
+                        model = statusItem.uri,
+                        contentDescription = "Status Image",
+                        modifier = Modifier.fillMaxSize(),
+                        contentScale = ContentScale.Fit
+                    )
+                }
             }
 
+            // Enhanced status notification with animations
             AnimatedVisibility(
-                visible = saveStatus !is SaveStatus.None,
-                enter = fadeIn() + slideInVertically { it },
-                exit = fadeOut() + slideOutVertically { it }
+                visible = saveStatus is SaveStatus.Success || saveStatus is SaveStatus.Error,
+                enter = fadeIn(animationSpec = tween(300)) + 
+                       slideInVertically(
+                           animationSpec = spring(
+                               dampingRatio = Spring.DampingRatioMediumBouncy,
+                               stiffness = Spring.StiffnessLow
+                           ),
+                           initialOffsetY = { it }
+                       ),
+                exit = fadeOut(animationSpec = tween(300)),
+                modifier = Modifier
+                    .align(Alignment.BottomCenter)
+                    .padding(16.dp)
             ) {
                 Snackbar(
-                    modifier = Modifier
-                        .padding(16.dp)
-                        .align(Alignment.BottomCenter),
                     action = {
                         TextButton(
                             onClick = { saveStatus = SaveStatus.None }
                         ) {
-                            Text("OK")
+                            Text(
+                                "DISMISS",
+                                color = when (saveStatus) {
+                                    is SaveStatus.Success -> MaterialTheme.colorScheme.primary
+                                    is SaveStatus.Error -> MaterialTheme.colorScheme.error
+                                    else -> MaterialTheme.colorScheme.primary
+                                }
+                            )
                         }
                     },
+                    shape = RoundedCornerShape(8.dp),
                     containerColor = when (saveStatus) {
-                        is SaveStatus.Success -> MaterialTheme.colorScheme.primaryContainer
-                        is SaveStatus.Error -> MaterialTheme.colorScheme.errorContainer
-                        else -> MaterialTheme.colorScheme.surfaceVariant
+                        is SaveStatus.Success -> MaterialTheme.colorScheme.primaryContainer.copy(alpha = 0.9f)
+                        is SaveStatus.Error -> MaterialTheme.colorScheme.errorContainer.copy(alpha = 0.9f)
+                        else -> MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.9f)
+                    },
+                    contentColor = when (saveStatus) {
+                        is SaveStatus.Success -> MaterialTheme.colorScheme.onPrimaryContainer
+                        is SaveStatus.Error -> MaterialTheme.colorScheme.onErrorContainer
+                        else -> MaterialTheme.colorScheme.onSurfaceVariant
                     }
                 ) {
-                    Text(
-                        text = when (saveStatus) {
-                            is SaveStatus.Saving -> "Saving status..."
-                            is SaveStatus.Success -> "Status saved successfully!"
-                            is SaveStatus.Error -> (saveStatus as SaveStatus.Error).message
-                            else -> ""
-                        }
-                    )
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.spacedBy(8.dp)
+                    ) {
+                        Icon(
+                            painter = if (saveStatus is SaveStatus.Success) 
+                                         painterResource(id = R.drawable.ic_select_all) // Using existing icon as fallback
+                                      else 
+                                         painterResource(id = R.drawable.ic_close),
+                            contentDescription = null,
+                            modifier = Modifier.size(24.dp)
+                        )
+                        
+                        Text(
+                            text = when (saveStatus) {
+                                is SaveStatus.Success -> "Status saved successfully!"
+                                is SaveStatus.Error -> (saveStatus as SaveStatus.Error).message
+                                else -> ""
+                            },
+                            style = MaterialTheme.typography.bodyMedium,
+                            fontWeight = FontWeight.Medium
+                        )
+                    }
+                }
+            }
+            
+            // Loading indicator when saving
+            AnimatedVisibility(
+                visible = saveStatus is SaveStatus.Saving,
+                enter = fadeIn(),
+                exit = fadeOut(),
+                modifier = Modifier
+                    .align(Alignment.Center)
+            ) {
+                Surface(
+                    color = MaterialTheme.colorScheme.surface.copy(alpha = 0.7f),
+                    shape = RoundedCornerShape(16.dp),
+                    modifier = Modifier
+                        .size(100.dp)
+                ) {
+                    Column(
+                        horizontalAlignment = Alignment.CenterHorizontally,
+                        verticalArrangement = Arrangement.Center,
+                        modifier = Modifier.fillMaxSize()
+                    ) {
+                        CircularProgressIndicator(
+                            color = MaterialTheme.colorScheme.primary,
+                            modifier = Modifier.size(48.dp)
+                        )
+                        Spacer(Modifier.height(8.dp))
+                        Text(
+                            text = "Saving...",
+                            style = MaterialTheme.typography.bodyMedium,
+                            fontWeight = FontWeight.Medium
+                        )
+                    }
                 }
             }
         }
@@ -303,6 +452,9 @@ private fun VideoPlayer(uri: Uri) {
         factory = { context ->
             PlayerView(context).apply {
                 player = exoPlayer
+                useController = true
+                controllerShowTimeoutMs = 1500
+                showController()
             }
         },
         modifier = Modifier.fillMaxSize()
